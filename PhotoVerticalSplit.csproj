@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="LanguageExt.Core" Version="2.1.23" />
     <PackageReference Include="Magick.NET-Q16-AnyCPU" Version="7.0.7.700" />
   </ItemGroup>
 
