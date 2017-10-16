@@ -13,9 +13,10 @@ namespace PhotoVerticalSplit
 
         public static void Main(string[] args)
         {
-            GetOnlyOneImageInFolder().Match<Unit>(
+            var currentDir = Directory.GetCurrentDirectory()+"\\Kitchen";
+            GetOnlyOneImageInFolder(currentDir).Match<Unit>(
                 None: () => {
-                    Console.WriteLine($"Folder po now going to: {Directory.GetCurrentDirectory()}");
+                    Console.WriteLine($"Folder po now going to: {Directory.GetCurrentDirectory()+"\\Kitchen"}");
                     Console.WriteLine("Po: I have no image to slice in this folder!");
                     return Unit.Default;
                 },
@@ -48,10 +49,9 @@ namespace PhotoVerticalSplit
             }
         }
 
-        private static Option<string> GetOnlyOneImageInFolder()
+        private static Option<string> GetOnlyOneImageInFolder(string kitchenDir)
         {
-            var currentDir = Directory.GetCurrentDirectory();
-            var filesInCurrentDir = Directory.GetFiles(currentDir).ToList();
+            var filesInCurrentDir = Directory.GetFiles(kitchenDir).ToList();
             var file = filesInCurrentDir.FirstOrDefault(filePath => {
                 return ImageExtensions.Contains(Path.GetExtension(filePath).ToUpperInvariant());
             });
