@@ -1,4 +1,4 @@
-# Po-slicer
+# PoSlicer
 simple vertical image splitter and test for visual studio code writing c# code
 
 
