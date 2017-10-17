@@ -11,5 +11,8 @@ credits: http://www.webtoons.com/en/slice-of-life/roar-street-journal/ep-224-rsj
 My girlfriend who draws [Roar Streeet Journal](http://www.webtoons.com/en/slice-of-life/roar-street-journal/list?title_no=397), complains about hard to use photoshop to slice big *.tif vertical image file (photoshop seems only support jpeg slice into web version).
 So created this repository to save her time and so got more times together :))
 
+### How to publish squirrel 
+`dotnet publish -c Release -o Publish ./PhotoVerticalSplit.csproj -r win7-x64`
+
 ### My fav RSJ Episode?
 [The Tale of Two Wolves](http://www.webtoons.com/en/slice-of-life/roar-street-journal/ep-226-the-tale-of-two-wolves/viewer?title_no=397&episode_no=256)
