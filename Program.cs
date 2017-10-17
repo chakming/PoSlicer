@@ -14,6 +14,7 @@ namespace PhotoVerticalSplit
         public static void Main(string[] args)
         {
             var currentDir = Directory.GetCurrentDirectory() + "\\Kitchen";
+            Directory.CreateDirectory(currentDir);
             Console.WriteLine($"Folder po now going to: {currentDir}");
 
             GetOnlyOneImageInFolder(currentDir).Match<Unit>(
@@ -31,7 +32,7 @@ namespace PhotoVerticalSplit
 
             Console.WriteLine("Po: I finished slicing! :*");
             Console.WriteLine("press enter to exit...");
-            Console.ReadKey();
+            Console.Read();
         }
 
         private static void SliceImage(string inputPath)
@@ -72,7 +73,8 @@ namespace PhotoVerticalSplit
         private static int GetBestImageHeight(MagickImage image)
         {
             var notBadExpectedHeight = 0;
-            for (var expectedHeight = image.Width + 300; expectedHeight >= image.Width; expectedHeight -= 10)
+            var maxHitTimes = 10;
+            for (var expectedHeight = image.Width * 4 / 3; expectedHeight >= image.Width; expectedHeight -= 1)
             {
                 var testingImageNumSplitted = image.Height / expectedHeight;
                 if (image.Height - testingImageNumSplitted * expectedHeight == 0)
@@ -82,6 +84,11 @@ namespace PhotoVerticalSplit
                 if (image.Height - testingImageNumSplitted * expectedHeight > expectedHeight / 1.5)
                 {
                     notBadExpectedHeight = expectedHeight;
+
+                    if (maxHitTimes-- < 0)
+                    {
+                        break;
+                    }
                 }
             }
 
