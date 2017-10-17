@@ -13,29 +13,33 @@ namespace PhotoVerticalSplit
 
         public static void Main(string[] args)
         {
-            var currentDir = Directory.GetCurrentDirectory()+"\\Kitchen";
+            var currentDir = Directory.GetCurrentDirectory() + "\\Kitchen";
+            Console.WriteLine($"Folder po now going to: {currentDir}");
+
             GetOnlyOneImageInFolder(currentDir).Match<Unit>(
-                None: () => {
-                    Console.WriteLine($"Folder po now going to: {Directory.GetCurrentDirectory()+"\\Kitchen"}");
+                None: () =>
+                {
                     Console.WriteLine("Po: I have no image to slice in this folder!");
                     return Unit.Default;
                 },
-                Some: inputPath => {
+                Some: inputPath =>
+                {
                     SliceImage(inputPath);
                     return Unit.Default;
                 }
             );
-            
+
             Console.WriteLine("Po: I finished slicing! :*");
             Console.WriteLine("press enter to exit...");
             Console.ReadKey();
         }
 
-        private static void SliceImage(string inputPath){
+        private static void SliceImage(string inputPath)
+        {
             var originalFileDir = Path.GetDirectoryName(inputPath);
             var originalFileName = Path.GetFileNameWithoutExtension(inputPath);
             var originalFileExt = Path.GetExtension(inputPath);
-            
+
             using (var image = new MagickImage(inputPath))
             {
                 int i = 0;
@@ -52,32 +56,36 @@ namespace PhotoVerticalSplit
         private static Option<string> GetOnlyOneImageInFolder(string kitchenDir)
         {
             var filesInCurrentDir = Directory.GetFiles(kitchenDir).ToList();
-            var file = filesInCurrentDir.FirstOrDefault(filePath => {
+            var file = filesInCurrentDir.FirstOrDefault(filePath =>
+            {
                 return ImageExtensions.Contains(Path.GetExtension(filePath).ToUpperInvariant());
             });
             return file;
         }
 
-        private static void EmptyOutputDirectory(string outputDir){
-            if(Directory.Exists(outputDir)) Directory.Delete(outputDir, true);
-                Directory.CreateDirectory(outputDir);
+        private static void EmptyOutputDirectory(string outputDir)
+        {
+            if (Directory.Exists(outputDir)) Directory.Delete(outputDir, true);
+            Directory.CreateDirectory(outputDir);
         }
 
         private static int GetBestImageHeight(MagickImage image)
         {
             var notBadExpectedHeight = 0;
-            for(var expectedHeight = image.Width + 300; expectedHeight >= image.Width; expectedHeight-=10)
+            for (var expectedHeight = image.Width + 300; expectedHeight >= image.Width; expectedHeight -= 10)
             {
                 var testingImageNumSplitted = image.Height / expectedHeight;
-                if(image.Height - testingImageNumSplitted*expectedHeight == 0){
+                if (image.Height - testingImageNumSplitted * expectedHeight == 0)
+                {
                     return expectedHeight;
                 }
-                if(image.Height - testingImageNumSplitted*expectedHeight > expectedHeight / 1.5){
+                if (image.Height - testingImageNumSplitted * expectedHeight > expectedHeight / 1.5)
+                {
                     notBadExpectedHeight = expectedHeight;
                 }
             }
-            
-            return notBadExpectedHeight == 0? image.Height: notBadExpectedHeight;
+
+            return notBadExpectedHeight == 0 ? image.Height : notBadExpectedHeight;
         }
 
 
