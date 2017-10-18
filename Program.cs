@@ -66,8 +66,10 @@ namespace PhotoVerticalSplit
 
         private static void EmptyOutputDirectory(string outputDir)
         {
-            if (Directory.Exists(outputDir)) Directory.Delete(outputDir, true);
             Directory.CreateDirectory(outputDir);
+            string[] filePaths = Directory.GetFiles(outputDir);
+            foreach (string filePath in filePaths)
+            File.Delete(filePath);
         }
 
         private static int GetBestImageHeight(MagickImage image)
