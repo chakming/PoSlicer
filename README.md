@@ -12,7 +12,7 @@ My girlfriend who draws [Roar Streeet Journal](http://www.webtoons.com/en/slice-
 So created this repository to save her time and so got more times together :))
 
 ### How to publish through squirrel 
-1. make sure installed `nuget` through `choco install nuget.commandline`
+1. make sure installed `nuget` through `choco install -y nuget.commandline`
 2. `dotnet publish -c Release -o Publish ./PhotoVerticalSplit.csproj -r win7-x64`
 
 ### My fav RSJ Episode?
