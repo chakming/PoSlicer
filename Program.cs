@@ -13,11 +13,11 @@ namespace PhotoVerticalSplit
 
         public static void Main(string[] args)
         {
-            var currentDir = Directory.GetCurrentDirectory() + "\\Kitchen";
-            Directory.CreateDirectory(currentDir);
-            Console.WriteLine($"Folder po now going to: {currentDir}");
+            var poKitchen = Environment.GetFolderPath(Environment.SpecialFolder.Desktop)+ "\\PoKitchen";
+            Directory.CreateDirectory(poKitchen);
+            Console.WriteLine($"Folder po now going to: {poKitchen}");
 
-            GetOnlyOneImageInFolder(currentDir).Match<Unit>(
+            GetOnlyOneImageInFolder(poKitchen).Match<Unit>(
                 None: () =>
                 {
                     Console.WriteLine("Po: I have no image to slice in this folder!");
