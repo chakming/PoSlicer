@@ -8,7 +8,7 @@ credits: http://www.webtoons.com/en/slice-of-life/roar-street-journal/ep-224-rsj
 
 
 ### Why this repo?
-My girlfriend who draws [Roar Streeet Journal](http://www.webtoons.com/en/slice-of-life/roar-street-journal/list?title_no=397), complains about hard to use photoshop to slice big *.tif vertical image file (photoshop seems only support jpeg slice into web version).
+My wife who draws [Roar Streeet Journal](http://www.webtoons.com/en/slice-of-life/roar-street-journal/list?title_no=397), complains about hard to use photoshop to slice big *.tif vertical image file (photoshop seems only support jpeg slice into web version).
 So created this repository to save her time and so got more times together :))
 
 ### How to publish through squirrel 
